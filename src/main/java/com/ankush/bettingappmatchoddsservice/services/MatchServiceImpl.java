@@ -3,6 +3,7 @@ package com.ankush.bettingappmatchoddsservice.services;
 import com.ankush.bettingappentityservice.models.Match;
 import com.ankush.bettingappmatchoddsservice.dtos.MatchRequestDTO;
 import com.ankush.bettingappmatchoddsservice.dtos.MatchResponseDTO;
+import com.ankush.bettingappmatchoddsservice.events.MatchCreatedEvent;
 import com.ankush.bettingappmatchoddsservice.repositories.MatchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,11 +18,24 @@ public class MatchServiceImpl implements MatchService {
     private MatchRepository matchRepository;
     @Autowired
     private MatchMapper matchMapper;
+    @Autowired
+    private MatchEventProducer matchEventProducer;
 
     @Override
     public MatchResponseDTO createMatch(MatchRequestDTO dto) {
         Match match = matchMapper.toEntity(dto);
-        return matchMapper.toDto(matchRepository.save(match));
+        Match savedMatch=matchRepository.save(match);
+
+        MatchCreatedEvent event = MatchCreatedEvent.builder()
+                .id(savedMatch.getId())
+                .homeTeam(savedMatch.getHomeTeam())
+                .awayTeam(savedMatch.getAwayTeam())
+                .startTime(savedMatch.getStartTime())
+                .status(savedMatch.getStatus())
+                .build();
+        matchEventProducer.sendMatchCreatedEvent(event);
+
+        return matchMapper.toDto(savedMatch);
     }
 
     @Override
