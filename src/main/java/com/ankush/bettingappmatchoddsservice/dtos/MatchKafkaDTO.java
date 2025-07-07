@@ -1,8 +1,12 @@
 package com.ankush.bettingappmatchoddsservice.dtos;
 
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class MatchKafkaDTO {
     private Long matchId;
     private String homeTeam;

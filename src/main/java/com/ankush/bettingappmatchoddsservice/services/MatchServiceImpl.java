@@ -23,6 +23,7 @@ public class MatchServiceImpl implements MatchService {
 
     @Override
     public MatchResponseDTO createMatch(MatchRequestDTO dto) {
+        dto.setAwayTeam("Mumbai Indians");
         Match match = matchMapper.toEntity(dto);
         Match savedMatch=matchRepository.save(match);
 

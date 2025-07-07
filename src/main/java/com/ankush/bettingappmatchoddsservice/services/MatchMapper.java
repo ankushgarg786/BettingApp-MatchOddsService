@@ -3,7 +3,9 @@ package com.ankush.bettingappmatchoddsservice.services;
 import com.ankush.bettingappentityservice.models.Match;
 import com.ankush.bettingappmatchoddsservice.dtos.MatchRequestDTO;
 import com.ankush.bettingappmatchoddsservice.dtos.MatchResponseDTO;
+import org.mapstruct.Builder;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "spring")
