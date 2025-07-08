@@ -1,5 +1,6 @@
 package com.ankush.bettingappmatchoddsservice.services;
 
+import com.ankush.bettingappentityservice.models.MatchStatus;
 import com.ankush.bettingappmatchoddsservice.dtos.MatchRequestDTO;
 import com.ankush.bettingappmatchoddsservice.dtos.MatchResponseDTO;
 
@@ -11,4 +12,5 @@ public interface MatchService {
     MatchResponseDTO updateMatch(Long id, MatchRequestDTO dto);
     void deleteMatch(Long id);
     List<MatchResponseDTO> listMatches();
+    MatchResponseDTO updateMatchScore(Long matchId, String newScore, MatchStatus newStatus);
 }

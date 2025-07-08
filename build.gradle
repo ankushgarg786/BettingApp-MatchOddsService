@@ -40,7 +40,7 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
-    implementation 'com.ankush:BettingApp-EntityService:0.0.2-SNAPSHOT'
+    implementation 'com.ankush:BettingApp-EntityService:0.0.3-SNAPSHOT'
 }
 
 tasks.named('test') {
